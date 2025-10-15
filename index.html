@@ -4,21 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ElevateTech</title>
-
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- AOS Animations -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-  <!-- Your custom CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/style.css">
-  
 </head>
 
 
@@ -44,37 +34,30 @@
     </nav>
   </div>
 
-  <!-- Mobile Hamburger (Always on top) -->
   <button id="mobile-hamburger" aria-label="Toggle Menu" aria-expanded="false" 
           class="md:hidden fixed top-5 right-6 z-[1050] text-gray-800 focus:outline-none">
-    <!-- Hamburger -->
     <svg id="hamburger-icon" class="w-7 h-7 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
     </svg>
-    <!-- Close (X) -->
     <svg id="close-icon" class="w-7 h-7 transition-transform duration-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
 
-  <!-- Mobile Menu Panel -->
   <nav id="mobile-menu-panel" 
        class="fixed top-0 left-0 h-full w-full bg-white shadow-xl transform -translate-x-full transition-transform duration-300 z-[1000] flex flex-col items-center justify-center gap-6">
-    <!-- Logo inside menu -->
     <a href="#" class="absolute top-6 left-6 flex items-center gap-3">
-      <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" alt="Elevatech Logo" class="h-10 w-auto">
+      <img src="assets/images/elevate.png" alt="Elevatech Logo" class="h-10 w-auto">
     </a>
-    <a href="#services" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-medium opacity-0 translate-x-6 transition-all duration-300">Services</a>
-    <a href="#about" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-medium opacity-0 translate-x-6 transition-all duration-300">About</a>
-    <a href="#contact" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-medium opacity-0 translate-x-6 transition-all duration-300">Contact</a>
-    <a href="#consult" class="mobile-link py-3 px-6 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 opacity-0 translate-x-6 text-base">Get Consultation</a>
-  </nav>
+  <a href="#services" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-semibold tracking-wide opacity-0 translate-x-6 transition-all duration-300">Services</a>
+<a href="#about" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-semibold tracking-wide opacity-0 translate-x-6 transition-all duration-300">About</a>
+<a href="#contact" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-semibold tracking-wide opacity-0 translate-x-6 transition-all duration-300">Contact</a>
+<a href="#consult" class="mobile-link py-3 px-6 bg-blue-600 text-white font-semibold tracking-wide rounded-lg hover:bg-blue-700 transition-all duration-300 opacity-0 translate-x-6 text-base">Get Consultation</a>
+
 </header>
-<!-- Hero Section -->
 <section class="hero-section relative w-full min-h-screen bg-gradient-to-r from-white to-blue-150 flex items-center justify-center pt-28 md:pt-0">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-6 w-full h-full">
     
-    <!-- Left: Text -->
     <div class="relative z-10 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center h-full">
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6 animate-fade-in-smooth" style="animation-delay: 0.2s;">
         Empowering Businesses
@@ -93,30 +76,74 @@
       </div>
     </div>
 
-    <!-- Right: Illustration -->
-    <div class="md:w-1/2 w-full flex justify-center items-center mt-12 md:mt-0 h-full">
-      <svg class="w-full h-auto animate-float-tech" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100,400 L200,150 L500,100 L650,300 L600,500 L350,550 Z" fill="#2563EB" fill-opacity="0.25"/>
-        <path d="M150,450 L250,180 L480,120 L620,320 L580,520 L360,560 Z" fill="#3B82F6" fill-opacity="0.2"/>
-        <circle cx="180" cy="200" r="6" fill="#60A5FA"/>
-        <circle cx="500" cy="150" r="6" fill="#60A5FA"/>
-        <circle cx="620" cy="300" r="6" fill="#60A5FA"/>
-        <circle cx="400" cy="500" r="6" fill="#2563EB"/>
-        <circle cx="350" cy="400" r="6" fill="#2563EB"/>
-        <line x1="180" y1="200" x2="500" y2="150" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
-        <line x1="500" y1="150" x2="620" y2="300" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
-        <line x1="620" y1="300" x2="400" y2="500" stroke="#60A5FA" stroke-opacity="0.3" stroke-width="2"/>
-        <line x1="400" y1="500" x2="350" y2="400" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
-        <line x1="350" y1="400" x2="180" y2="200" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
-      </svg>
-    </div>
+<div class="md:w-1/2 w-full flex justify-center items-center mt-12 md:mt-0 h-full perspective-3d">
+  <svg class="w-full h-auto float-smooth" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-style: preserve-3d;">
+    
+    <defs>
+      <linearGradient id="mainGradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#e0c3fc"/>
+        <stop offset="100%" stop-color="#8ec5fc"/>
+        <animate attributeName="x1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
+        <animate attributeName="x2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
+        <animate attributeName="y1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
+        <animate attributeName="y2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
+      </linearGradient>
+
+      <linearGradient id="secondaryGradient" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#60a5fa"/>
+        <stop offset="100%" stop-color="#3b82f6"/>
+        <animate attributeName="x1" values="1;0;1" dur="25s" repeatCount="indefinite"/>
+        <animate attributeName="x2" values="0;1;0" dur="25s" repeatCount="indefinite"/>
+      </linearGradient>
+    </defs>
+
+    <g transform="scale(1.3) translate(-80, -120)">
+      <path d="M100,400 L200,150 L500,120 L650,300 L600,500 L350,550 Z" 
+            fill="url(#mainGradient)" fill-opacity="0.95" 
+            style="filter: drop-shadow(0 15px 15px rgba(0,0,0,0.05));"/>
+      
+      <path d="M150,450 L250,180 L480,140 L620,320 L580,520 L360,560 Z" 
+            fill="url(#secondaryGradient)" fill-opacity="0.25"/>
+      
+      <circle cx="180" cy="200" r="6" fill="#60A5FA"/>
+      <circle cx="500" cy="150" r="6" fill="#60A5FA"/>
+      <circle cx="620" cy="300" r="6" fill="#60A5FA"/>
+      <circle cx="400" cy="500" r="6" fill="#2563EB"/>
+      <circle cx="350" cy="400" r="6" fill="#2563EB"/>
+      <line x1="180" y1="200" x2="500" y2="150" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
+      <line x1="500" y1="150" x2="620" y2="300" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
+      <line x1="620" y1="300" x2="400" y2="500" stroke="#60A5FA" stroke-opacity="0.3" stroke-width="2"/>
+      <line x1="400" y1="500" x2="350" y2="400" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
+      <line x1="350" y1="400" x2="180" y2="200" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .float-smooth {
+    animation: float3D 12s ease-in-out infinite;
+    transform-origin: center center;
+  }
+
+  @keyframes float3D {
+    0% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
+    25% { transform: rotateX(1deg) rotateY(-1deg) translateY(-8px) translateX(4px); }
+    50% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
+    75% { transform: rotateX(-1deg) rotateY(1deg) translateY(8px) translateX(-4px); }
+    100% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
+  }
+
+  .perspective-3d {
+    perspective: 1500px;
+  }
+</style>
+
 
   </div>
 </section>
 
 
 <script>
-  // === Elements ===
 const hamburgerBtn = document.getElementById('mobile-hamburger');
 const mobileMenu = document.getElementById('mobile-menu-panel');
 const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -179,7 +206,7 @@ window.addEventListener('scroll', () => {
 
     navLinks.forEach(link => {
       link.classList.remove('text-black','hover:text-blue-300');
-      link.classList.add('text-gray-700','hover:text-blue-600');
+      link.classList.add('text-black-700','hover:text-blue-600');
     });
 
   } else {
@@ -202,14 +229,12 @@ window.addEventListener('scroll', () => {
 </script>
 
 <style>
-  /* Smooth fade-in */
   @keyframes fadeInSmooth { 
     0% { opacity:0; transform:translateY(30px); } 
     100% { opacity:1; transform:translateY(0); } 
   }
   .animate-fade-in-smooth{ animation:fadeInSmooth 1s cubic-bezier(0.4,0,0.2,1) forwards; }
 
-  /* Floating SVG shapes */
   @keyframes floatShapes {
     0% { transform: translateY(0) rotate(0deg) scale(1); }
     25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
@@ -223,7 +248,6 @@ window.addEventListener('scroll', () => {
 <section id="services" class="py-24 px-6 bg-gray-50">
   <div class="max-w-7xl mx-auto">
 
-    <!-- Header -->
     <div class="text-center max-w-3xl md:max-w-4xl mx-auto mb-16 md:mb-24 px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-snug mb-5 tracking-tight opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll">
         Our Professional Services
@@ -233,7 +257,6 @@ window.addEventListener('scroll', () => {
       </p>
     </div>
 
-    <!-- Services Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
       <!-- Card 1 -->
