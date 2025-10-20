@@ -14,61 +14,91 @@
 
 <body class="relative">
 <header class="fixed top-0 left-0 w-full z-50">
-  <!-- Transparent Header Background -->
-  <div class="bg-transparent w-full absolute top-0 left-0 h-full z-0" id="header-bg"></div>
+  <!-- Header Background -->
+  <div id="header-bg" class="absolute inset-0 bg-transparent transition-all duration-500"></div>
 
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center py-4 relative z-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center py-3 md:py-4 relative z-10">
     <!-- Logo -->
-<a href="#" class="flex items-center gap-3">
-  <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
-       alt="Elevatech Logo" 
-       class="h-14 md:h-16 w-auto">
-</a>
-
+    <a href="#" class="flex items-center gap-3">
+      <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
+           alt="Elevatech Logo" 
+           class="h-12 md:h-14 w-auto">
+    </a>
 
     <!-- Desktop Menu -->
-    <nav id="desktop-nav" class="hidden md:flex items-center gap-6 font-sans text-sm md:text-base">
-      <a href="#services" class="nav-link text-black hover:text-blue-300 transition-colors">Our Services</a>
-      <a href="#about" class="nav-link text-black hover:text-blue-300 transition-colors">About Us</a>
-      <a href="#contact" class="nav-link text-black hover:text-blue-300 transition-colors">Contact Us</a>
-      <a href="#consult" class="inline-flex items-center gap-.5 px-5 py-2 text-lg font-semibold rounded-lg bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-500">
+    <nav id="desktop-nav" class="hidden md:flex items-center gap-8 font-sans">
+      <a href="#services" class="nav-link text-gray-900 font-semibold tracking-wide hover:text-blue-600 transition-colors">Our Services</a>
+      <a href="#about" class="nav-link text-gray-900 font-semibold tracking-wide hover:text-blue-600 transition-colors">About Us</a>
+      <a href="#contact" class="nav-link text-gray-900 font-semibold tracking-wide hover:text-blue-600 transition-colors">Contact Us</a>
+      <a href="#consult" 
+         class="ml-4 inline-flex items-center gap-1 px-6 py-2.5 text-base font-semibold rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300">
         Book a Free Consultation
       </a>
     </nav>
+
+<button id="mobile-hamburger" aria-label="Toggle Menu" 
+        class="md:hidden text-gray-900 focus:outline-none relative z-[1100]">
+  <!-- Hamburger Icon -->
+  <svg id="hamburger-icon" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+
+  <!-- Close Icon -->
+  <svg id="close-icon" class="w-8 h-8 hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</button>
+
   </div>
 
-  <button id="mobile-hamburger" aria-label="Toggle Menu" aria-expanded="false" 
-          class="md:hidden fixed top-5 right-6 z-[1050] text-gray-800 focus:outline-none">
-    <svg id="hamburger-icon" class="w-7 h-7 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-    <svg id="close-icon" class="w-7 h-7 transition-transform duration-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<!-- Mobile Menu -->
+<nav id="mobile-menu-panel" 
+     class="fixed top-0 left-0 h-full w-full bg-white shadow-2xl transform -translate-x-full transition-transform duration-500 z-[1000] flex flex-col items-center justify-center space-y-8">
+  
+  <!-- Close Icon inside mobile menu -->
+  <button id="mobile-close" aria-label="Close Menu"
+          class="absolute top-6 right-6 text-gray-900 focus:outline-none z-[1010]">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
 
-  <nav id="mobile-menu-panel" 
-       class="fixed top-0 left-0 h-full w-full bg-white shadow-xl transform -translate-x-full transition-transform duration-300 z-[1000] flex flex-col items-center justify-center gap-6">
-    <a href="#" class="absolute top-6 left-6 flex items-center gap-3">
-      <img src="https://raw.githubusercontent.com/Ardianiii/ardianiii.github.io/refs/heads/main/assets/images/LOGO%20ELEVATE-01.png" alt="Elevatech Logo" class="h-10 w-auto">
-    </a>
-  <a href="#services" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-semibold tracking-wide opacity-0 translate-x-6 transition-all duration-300">Services</a>
-<a href="#about" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-semibold tracking-wide opacity-0 translate-x-6 transition-all duration-300">About</a>
-<a href="#contact" class="mobile-link py-3 text-gray-700 hover:text-blue-600 font-semibold tracking-wide opacity-0 translate-x-6 transition-all duration-300">Contact</a>
-<a href="#consult" class="mobile-link py-3 px-6 bg-blue-600 text-white font-semibold tracking-wide rounded-lg hover:bg-blue-700 transition-all duration-300 opacity-0 translate-x-6 text-base">Get Consultation</a>
+  <!-- Mobile Logo -->
+  <a href="#" class="flex items-center gap-3 mb-4">
+    <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
+         alt="Elevatech Logo" 
+         class="h-14 w-auto drop-shadow-md">
+  </a>
+
+  <!-- Mobile Links -->
+  <a href="#services" class="mobile-link text-gray-800 text-lg font-semibold opacity-0 translate-x-8 hover:text-blue-600 transition-all duration-300">Services</a>
+  <a href="#about" class="mobile-link text-gray-800 text-lg font-semibold opacity-0 translate-x-8 hover:text-blue-600 transition-all duration-300">About</a>
+  <a href="#contact" class="mobile-link text-gray-800 text-lg font-semibold opacity-0 translate-x-8 hover:text-blue-600 transition-all duration-300">Contact</a>
+  <a href="#consult" class="mobile-link bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:bg-blue-700 transition-all duration-300 opacity-0 translate-x-8">Get Consultation</a>
+</nav>
 
 </header>
-<section class="hero-section relative w-full min-h-screen bg-gradient-to-r from-white to-blue-150 flex items-center justify-center pt-28 md:pt-0">
+
+<section class="hero-section relative w-full min-h-screen bg-gradient-to-r from-white to-blue-150 flex items-center justify-center pt-28 md:pt-0 overflow-hidden">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-6 w-full h-full">
     
+    <!-- TEXT -->
     <div class="relative z-10 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center h-full">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6 animate-fade-in-smooth" style="animation-delay: 0.2s;">
+      <h1 
+        class="font-bold text-gray-900 leading-[1.1] tracking-tight mb-6 animate-fade-in-smooth"
+        style="animation-delay: 0.2s; font-size: clamp(2.3rem, 4vw, 4.5rem);"
+      >
         Empowering Businesses
-        <span class="text-blue-600">with Scalable SaaS Solutions</span>
+        <span class="text-blue-600 block tracking-[-0.02em]">with Scalable SaaS Solutions</span>
       </h1>
-      <p class="text-gray-700 text-base sm:text-lg md:text-xl mb-8 max-w-lg animate-fade-in-smooth" style="animation-delay: 0.4s;">
+
+      <p 
+        class="text-gray-700 mb-8 max-w-lg animate-fade-in-smooth leading-relaxed tracking-normal"
+        style="animation-delay: 0.4s; font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem);"
+      >
         We build custom software, cloud infrastructure, and automation systems that help your business scale faster, work smarter, and stay ahead in a digital world.
       </p>
+
       <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-smooth" style="animation-delay: 0.6s;">
         <a href="#consult" class="px-8 py-3 bg-blue-600 text-white rounded-lg shadow-lg font-semibold hover:scale-105 hover:shadow-xl transition-transform duration-500">
           Book a Free Consultation
@@ -79,55 +109,54 @@
       </div>
     </div>
 
-<div class="md:w-1/2 w-full flex justify-center items-center mt-12 md:mt-0 h-full perspective-3d">
-  <svg class="w-full h-auto float-smooth" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-style: preserve-3d;">
-    
-    <defs>
-      <linearGradient id="mainGradient" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#e0c3fc"/>
-        <stop offset="100%" stop-color="#8ec5fc"/>
-        <animate attributeName="x1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
-        <animate attributeName="x2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
-        <animate attributeName="y1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
-        <animate attributeName="y2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
-      </linearGradient>
+    <!-- SVG / GRAPHIC -->
+    <div class="md:w-1/2 w-full flex justify-center items-center mt-12 md:mt-0 h-full perspective-3d">
+      <svg class="w-full max-w-[520px] h-auto float-smooth" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-style: preserve-3d;">
+        <defs>
+          <linearGradient id="mainGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e0c3fc"/>
+            <stop offset="100%" stop-color="#8ec5fc"/>
+            <animate attributeName="x1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
+            <animate attributeName="y1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
+            <animate attributeName="y2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
+          </linearGradient>
 
-      <linearGradient id="secondaryGradient" x1="1" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#60a5fa"/>
-        <stop offset="100%" stop-color="#3b82f6"/>
-        <animate attributeName="x1" values="1;0;1" dur="25s" repeatCount="indefinite"/>
-        <animate attributeName="x2" values="0;1;0" dur="25s" repeatCount="indefinite"/>
-      </linearGradient>
-    </defs>
+          <linearGradient id="secondaryGradient" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="100%" stop-color="#3b82f6"/>
+            <animate attributeName="x1" values="1;0;1" dur="25s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="0;1;0" dur="25s" repeatCount="indefinite"/>
+          </linearGradient>
+        </defs>
 
-    <g transform="scale(1.3) translate(-80, -120)">
-      <path d="M100,400 L200,150 L500,120 L650,300 L600,500 L350,550 Z" 
-            fill="url(#mainGradient)" fill-opacity="0.95" 
-            style="filter: drop-shadow(0 15px 15px rgba(0,0,0,0.05));"/>
-      
-      <path d="M150,450 L250,180 L480,140 L620,320 L580,520 L360,560 Z" 
-            fill="url(#secondaryGradient)" fill-opacity="0.25"/>
-      
-      <circle cx="180" cy="200" r="6" fill="#60A5FA"/>
-      <circle cx="500" cy="150" r="6" fill="#60A5FA"/>
-      <circle cx="620" cy="300" r="6" fill="#60A5FA"/>
-      <circle cx="400" cy="500" r="6" fill="#2563EB"/>
-      <circle cx="350" cy="400" r="6" fill="#2563EB"/>
-      <line x1="180" y1="200" x2="500" y2="150" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
-      <line x1="500" y1="150" x2="620" y2="300" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
-      <line x1="620" y1="300" x2="400" y2="500" stroke="#60A5FA" stroke-opacity="0.3" stroke-width="2"/>
-      <line x1="400" y1="500" x2="350" y2="400" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
-      <line x1="350" y1="400" x2="180" y2="200" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
-    </g>
-  </svg>
-</div>
+        <g transform="scale(1.3) translate(-80, -120)">
+          <path d="M100,400 L200,150 L500,120 L650,300 L600,500 L350,550 Z" 
+                fill="url(#mainGradient)" fill-opacity="0.95" 
+                style="filter: drop-shadow(0 15px 15px rgba(0,0,0,0.05));"/>
+          <path d="M150,450 L250,180 L480,140 L620,320 L580,520 L360,560 Z" 
+                fill="url(#secondaryGradient)" fill-opacity="0.25"/>
+          <circle cx="180" cy="200" r="6" fill="#60A5FA"/>
+          <circle cx="500" cy="150" r="6" fill="#60A5FA"/>
+          <circle cx="620" cy="300" r="6" fill="#60A5FA"/>
+          <circle cx="400" cy="500" r="6" fill="#2563EB"/>
+          <circle cx="350" cy="400" r="6" fill="#2563EB"/>
+          <line x1="180" y1="200" x2="500" y2="150" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
+          <line x1="500" y1="150" x2="620" y2="300" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
+          <line x1="620" y1="300" x2="400" y2="500" stroke="#60A5FA" stroke-opacity="0.3" stroke-width="2"/>
+          <line x1="400" y1="500" x2="350" y2="400" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
+          <line x1="350" y1="400" x2="180" y2="200" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
 
 <style>
   .float-smooth {
     animation: float3D 12s ease-in-out infinite;
     transform-origin: center center;
   }
-
   @keyframes float3D {
     0% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
     25% { transform: rotateX(1deg) rotateY(-1deg) translateY(-8px) translateX(4px); }
@@ -135,15 +164,9 @@
     75% { transform: rotateX(-1deg) rotateY(1deg) translateY(8px) translateX(-4px); }
     100% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
   }
-
-  .perspective-3d {
-    perspective: 1500px;
-  }
+  .perspective-3d { perspective: 1500px; }
 </style>
 
-
-  </div>
-</section>
 
 
 <script>
@@ -151,83 +174,55 @@ const hamburgerBtn = document.getElementById('mobile-hamburger');
 const mobileMenu = document.getElementById('mobile-menu-panel');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 const hamburgerIcon = document.getElementById('hamburger-icon');
-const closeIcon = document.getElementById('close-icon');
+const headerBg = document.getElementById('header-bg');
+const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+const mobileClose = document.getElementById('mobile-close'); // close button inside menu
 
-const headerBg = document.getElementById('header-bg'); // Header background
-const navLinks = document.querySelectorAll('#desktop-nav .nav-link, #mobile-menu-panel .mobile-link'); // All links
-const logoText = document.querySelector('.logo-text'); // optional, adjust if you have a logo text
-
-// === Mobile menu toggle ===
+// === Mobile menu toggle via hamburger ===
 hamburgerBtn.addEventListener('click', () => {
   const isOpen = mobileMenu.classList.contains('translate-x-0');
-
+  
   if (!isOpen) {
     // Open menu
     mobileMenu.classList.remove('-translate-x-full');
     mobileMenu.classList.add('translate-x-0');
+    hamburgerIcon.classList.add('hidden');
 
     // Animate links
     mobileLinks.forEach((link, i) => {
       setTimeout(() => {
-        link.classList.remove('opacity-0', 'translate-x-6');
+        link.classList.remove('opacity-0', 'translate-x-8');
         link.classList.add('opacity-100', 'translate-x-0');
-      }, i * 100);
+      }, i * 120);
     });
-
-    // Toggle icons
-    hamburgerIcon.classList.add('hidden');
-    closeIcon.classList.remove('hidden');
   } else {
     // Close menu
     mobileMenu.classList.add('-translate-x-full');
     mobileMenu.classList.remove('translate-x-0');
-
-    // Hide links immediately
-    mobileLinks.forEach(link => {
-      link.classList.add('opacity-0', 'translate-x-6');
-      link.classList.remove('opacity-100', 'translate-x-0');
-    });
-
-    // Toggle icons
-    closeIcon.classList.add('hidden');
     hamburgerIcon.classList.remove('hidden');
+    mobileLinks.forEach(link => link.classList.add('opacity-0', 'translate-x-8'));
   }
 });
 
-// === Scroll behavior ===
+// === Mobile menu toggle via X button ===
+mobileClose.addEventListener('click', () => {
+  mobileMenu.classList.add('-translate-x-full');
+  mobileMenu.classList.remove('translate-x-0');
+  hamburgerIcon.classList.remove('hidden');
+  mobileLinks.forEach(link => link.classList.add('opacity-0', 'translate-x-8'));
+});
+
+// === Scroll styling for header ===
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-
-  if(scrollY > 50){
-    headerBg.classList.add('bg-white','shadow-md','backdrop-blur-sm');
+  if (scrollY > 50) {
+    headerBg.classList.add('bg-white', 'shadow-md');
     headerBg.classList.remove('bg-transparent');
-
-    if(logoText) {
-      logoText.classList.add('text-blue-600');
-      logoText.classList.remove('text-black');
-    }
-
-    navLinks.forEach(link => {
-      link.classList.remove('text-black','hover:text-blue-300');
-      link.classList.add('text-black-700','hover:text-blue-600');
-    });
-
   } else {
-    headerBg.classList.add('bg-transparent'); 
-    headerBg.classList.remove('bg-white','shadow-md','backdrop-blur-sm');
-
-    if(logoText) {
-      logoText.classList.add('text-blue-600'); // keep blue
-      logoText.classList.remove('text-black');
-    }
-
-    navLinks.forEach(link => {
-      link.classList.remove('text-gray-700','hover:text-blue-600'); 
-      link.classList.add('text-black','hover:text-blue-300');
-    });
+    headerBg.classList.add('bg-transparent');
+    headerBg.classList.remove('bg-white', 'shadow-md');
   }
 });
-
 
 </script>
 
@@ -580,6 +575,7 @@ window.addEventListener('scroll', () => {
 
 
 <!-- Include AOS CSS in <head> -->
+  <div id="contact"></div>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 <section class="py-20 px-6 overflow-hidden bg-gray-50">
   <div class="max-w-7xl mx-auto">
@@ -588,9 +584,9 @@ window.addEventListener('scroll', () => {
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         Ready to Take the Next Step?
       </h2>
-      <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+      <pclass="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
         Let’s discuss how we can help transform your business with the right technology solutions.
-      </p>
+      </pclass=>
     </div>
 
     <!-- Grid -->
@@ -692,55 +688,64 @@ window.addEventListener('scroll', () => {
     </div>
   </div>
 </section>
-
-<footer class="bg-white text-gray-700 pt-10 pb-16 border-t border-gray-200">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+<footer class="bg-white text-gray-700 border-t border-gray-200 pt-12 pb-12">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
 
     <!-- Logo & Description -->
-    <div>
-      <h1 class="text-xl font-bold text-blue-400 mb-2 animate-fadeIn">Elevatech</h1>
-      <p class="text-gray-500 text-sm mb-1 animate-fadeIn delay-100">
+    <div class="space-y-2">
+          <a href="#" class="flex p0 m0 items-center gap-0">
+      <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
+           alt="Elevatech Logo" 
+           class="h-12 md:h-14 w-auto">
+    </a>
+      <p class="text-gray-600 text-sm md:text-base">
         Professional Tech Services for Modern Businesses
       </p>
-      <p class="text-gray-500 text-sm animate-fadeIn delay-200">
+      <p class="text-gray-600 text-sm md:text-base">
         Empowering businesses with reliable, scalable, and innovative technology solutions.
       </p>
     </div>
 
     <!-- Services -->
     <div>
-      <h2 class="font-semibold mb-2 text-base text-black animate-fadeIn">Services</h2>
-      <ul class="space-y-1 text-gray-600 text-sm">
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-100 cursor-pointer">Software Development</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-150 cursor-pointer">Database Solutions</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-200 cursor-pointer">Process Digitalization</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-250 cursor-pointer">Custom Solutions</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-300 cursor-pointer">Infrastructure</li>
+      <h2 class="font-semibold text-lg text-black md:mb-4 mb-2 cursor-pointer md:cursor-default"
+          onclick="toggleAccordion('servicesAccordion')">
+        Services
+      </h2>
+      <ul id="servicesAccordion" class="space-y-2 text-gray-600 text-sm md:text-base md:block hidden transition-all duration-300 overflow-hidden">
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Software Development</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Database Solutions</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Process Digitalization</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Custom Solutions</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Infrastructure</li>
       </ul>
     </div>
 
     <!-- Company -->
     <div>
-      <h2 class="font-semibold mb-2 text-base text-black animate-fadeIn">Company</h2>
-      <ul class="space-y-1 text-gray-600 text-sm">
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-100 cursor-pointer">About Us</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-150 cursor-pointer">Portfolio</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-200 cursor-pointer">Contact</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-250 cursor-pointer">Blog</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 animate-fadeIn delay-300 cursor-pointer">Careers</li>
+      <h2 class="font-semibold text-lg text-black md:mb-4 mb-2 cursor-pointer md:cursor-default"
+          onclick="toggleAccordion('companyAccordion')">
+        Company
+      </h2>
+      <ul id="companyAccordion" class="space-y-2 text-gray-600 text-sm md:text-base md:block hidden transition-all duration-300 overflow-hidden">
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">About Us</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Portfolio</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Contact</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Blog</li>
+        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Careers</li>
       </ul>
     </div>
 
     <!-- Contact -->
-    <div>
-      <h2 class="font-semibold mb-2 text-base text-black animate-fadeIn">Contact</h2>
-      <p class="flex items-center text-gray-600 text-sm mb-1 animate-fadeIn delay-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div class="space-y-2">
+      <h2 class="font-semibold text-lg text-black mb-2">Contact</h2>
+      <p class="flex items-center text-gray-600 text-sm md:text-base">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 8V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2z" />
         </svg>
         contact@elevatech.com
       </p>
-      <p class="text-gray-600 text-sm animate-fadeIn delay-150">
+      <p class="text-gray-600 text-sm md:text-base">
         123 Technology Avenue<br>
         Innovation District<br>
         Tech City, TC 12345
@@ -750,26 +755,53 @@ window.addEventListener('scroll', () => {
   </div>
 
   <!-- Footer Bottom -->
-  <div class="mt-10 border-t border-gray-200 pt-4 flex flex-col md:flex-row justify-between items-center px-6 max-w-7xl mx-auto">
-    <p class="text-gray-500 text-sm animate-fadeIn">&copy; 2025 Elevatech. All rights reserved.</p>
+  <div class="mt-10 border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center px-6 lg:px-10">
+    <p class="text-gray-500 text-sm md:text-base">&copy; 2025 Elevatech. All rights reserved.</p>
 
     <!-- Social Icons -->
-    <div class="flex space-x-2 mt-3 md:mt-0 animate-fadeIn">
-      <a href="#" class="text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300">
+    <div class="flex space-x-3 mt-4 md:mt-0">
+      <a href="#" class="text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
         <i class="fab fa-facebook-f"></i>
       </a>
-      <a href="#" class="text-gray-500 hover:text-blue-400 hover:bg-blue-50 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300">
+      <a href="#" class="text-gray-500 hover:text-blue-400 hover:bg-blue-50 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="#" class="text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300">
+      <a href="#" class="text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
         <i class="fab fa-linkedin-in"></i>
       </a>
-      <a href="#" class="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300">
+      <a href="#" class="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
         <i class="fab fa-github"></i>
       </a>
     </div>
   </div>
 </footer>
+
+<script>
+  function toggleAccordion(id) {
+    const el = document.getElementById(id);
+    if (el.style.maxHeight) {
+      el.style.maxHeight = null;
+      setTimeout(() => el.classList.add('hidden'), 300);
+    } else {
+      el.classList.remove('hidden');
+      el.style.maxHeight = el.scrollHeight + "px";
+    }
+  }
+
+  // On page load, reset mobile accordions
+  window.addEventListener('resize', () => {
+    if(window.innerWidth >= 768) {
+      document.getElementById('servicesAccordion').classList.remove('hidden');
+      document.getElementById('companyAccordion').classList.remove('hidden');
+      document.getElementById('servicesAccordion').style.maxHeight = null;
+      document.getElementById('companyAccordion').style.maxHeight = null;
+    } else {
+      document.getElementById('servicesAccordion').classList.add('hidden');
+      document.getElementById('companyAccordion').classList.add('hidden');
+    }
+  });
+</script>
+
 
 <!-- Include AOS JS at the bottom -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
