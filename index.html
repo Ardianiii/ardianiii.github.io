@@ -1,823 +1,578 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ElevateTech</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevateTech | Ship Faster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#0a0a0a',
+                        surface: '#121212',
+                        border: '#27272a',
+                        primary: '#ffffff',
+                        muted: '#a1a1aa'
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        
+        .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+        }
+    </style>
 </head>
+<body class="antialiased selection:bg-white selection:text-black">
 
+    <div class="fixed top-[-150px] left-[20%] glow animate-pulse-slow"></div>
+    <div class="fixed bottom-[-150px] right-[20%] glow animate-pulse-slow delay-300"></div>
 
-<body class="relative">
-<header class="fixed top-0 left-0 w-full z-50">
-  <!-- Header Background -->
-  <div id="header-bg" class="absolute inset-0 bg-transparent transition-all duration-500"></div>
-
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center py-3 md:py-4 relative z-10">
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-3">
-      <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
-           alt="Elevatech Logo" 
-           class="h-12 md:h-14 w-auto">
-    </a>
-
-    <!-- Desktop Menu -->
-    <nav id="desktop-nav" class="hidden md:flex items-center gap-8 font-sans">
-      <a href="#services" class="nav-link text-gray-900 font-semibold tracking-wide hover:text-blue-600 transition-colors">Our Services</a>
-      <a href="#about" class="nav-link text-gray-900 font-semibold tracking-wide hover:text-blue-600 transition-colors">About Us</a>
-      <a href="#contact" class="nav-link text-gray-900 font-semibold tracking-wide hover:text-blue-600 transition-colors">Contact Us</a>
-      <a href="#consult" 
-         class="ml-4 inline-flex items-center gap-1 px-6 py-2.5 text-base font-semibold rounded-full bg-gradient-to-r from-blue-600 to-blue-400 text-white shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-300">
-        Book a Free Consultation
-      </a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-transparent transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-tight">ElevateTech.</a>
+            
+            <div class="flex items-center space-x-6">
+                <!-- Language Switcher -->
+                <div class="flex space-x-2 text-xs font-medium text-muted">
+                    <button onclick="setLang('en')" id="lang-en" class="text-white hover:text-white transition-colors">EN</button>
+                    <span>|</span>
+                    <button onclick="setLang('al')" id="lang-al" class="hover:text-white transition-colors">AL</button>
+                    <span>|</span>
+                    <button onclick="setLang('de')" id="lang-de" class="hover:text-white transition-colors">DE</button>
+                </div>
+                <a href="#contact" data-i18n="nav_cta" class="text-sm font-medium hover:text-muted transition-colors hidden sm:block">Book a Call</a>
+            </div>
+        </div>
     </nav>
 
-<button id="mobile-hamburger" aria-label="Toggle Menu" 
-        class="md:hidden text-gray-900 focus:outline-none relative z-[1100]">
-  <!-- Hamburger Icon -->
-  <svg id="hamburger-icon" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
+    <div class="absolute inset-0 bg-grid pointer-events-none z-[-2]"></div>
 
-  <!-- Close Icon -->
-  <svg id="close-icon" class="w-8 h-8 hidden transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-  </svg>
-</button>
-
-  </div>
-
-<!-- Mobile Menu -->
-<nav id="mobile-menu-panel" 
-     class="fixed top-0 left-0 h-full w-full bg-white shadow-2xl transform -translate-x-full transition-transform duration-500 z-[1000] flex flex-col items-center justify-center space-y-8">
-  
-  <!-- Close Icon inside mobile menu -->
-  <button id="mobile-close" aria-label="Close Menu"
-          class="absolute top-6 right-6 text-gray-900 focus:outline-none z-[1010]">
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  </button>
-
-  <!-- Mobile Logo -->
-  <a href="#" class="flex items-center gap-3 mb-4">
-    <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
-         alt="Elevatech Logo" 
-         class="h-14 w-auto drop-shadow-md">
-  </a>
-
-  <!-- Mobile Links -->
-  <a href="#services" class="mobile-link text-gray-800 text-lg font-semibold opacity-0 translate-x-8 hover:text-blue-600 transition-all duration-300">Services</a>
-  <a href="#about" class="mobile-link text-gray-800 text-lg font-semibold opacity-0 translate-x-8 hover:text-blue-600 transition-all duration-300">About</a>
-  <a href="#contact" class="mobile-link text-gray-800 text-lg font-semibold opacity-0 translate-x-8 hover:text-blue-600 transition-all duration-300">Contact</a>
-  <a href="#consult" class="mobile-link bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:bg-blue-700 transition-all duration-300 opacity-0 translate-x-8">Get Consultation</a>
-</nav>
-
-</header>
-
-<section class="hero-section relative w-full min-h-screen bg-gradient-to-r from-white to-blue-150 flex items-center justify-center pt-28 md:pt-0 overflow-hidden">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-6 w-full h-full">
-    
-    <!-- TEXT -->
-    <div class="relative z-10 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start justify-center h-full">
-      <h1 
-        class="font-bold text-gray-900 leading-[1.1] tracking-tight mb-6 animate-fade-in-smooth"
-        style="animation-delay: 0.2s; font-size: clamp(2.3rem, 4vw, 4.5rem);"
-      >
-        Empowering Businesses
-        <span class="text-blue-600 block tracking-[-0.02em]">with Scalable SaaS Solutions</span>
-      </h1>
-
-      <p 
-        class="text-gray-700 mb-8 max-w-lg animate-fade-in-smooth leading-relaxed tracking-normal"
-        style="animation-delay: 0.4s; font-size: clamp(1rem, 1.2vw + 0.5rem, 1.2rem);"
-      >
-        We build custom software, cloud infrastructure, and automation systems that help your business scale faster, work smarter, and stay ahead in a digital world.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-smooth" style="animation-delay: 0.6s;">
-        <a href="#consult" class="px-8 py-3 bg-blue-600 text-white rounded-lg shadow-lg font-semibold hover:scale-105 hover:shadow-xl transition-transform duration-500">
-          Book a Free Consultation
-        </a>
-        <a href="#services" class="px-8 py-3 border border-gray-300 text-gray-900 rounded-lg shadow hover:shadow-md transition-all duration-500">
-          Explore Our Services
-        </a>
-      </div>
-    </div>
-
-    <!-- SVG / GRAPHIC -->
-    <div class="md:w-1/2 w-full flex justify-center items-center mt-12 md:mt-0 h-full perspective-3d">
-      <svg class="w-full max-w-[520px] h-auto float-smooth" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform-style: preserve-3d;">
-        <defs>
-          <linearGradient id="mainGradient" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#e0c3fc"/>
-            <stop offset="100%" stop-color="#8ec5fc"/>
-            <animate attributeName="x1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
-            <animate attributeName="x2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
-            <animate attributeName="y1" values="0;1;0" dur="20s" repeatCount="indefinite"/>
-            <animate attributeName="y2" values="1;0;1" dur="20s" repeatCount="indefinite"/>
-          </linearGradient>
-
-          <linearGradient id="secondaryGradient" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#60a5fa"/>
-            <stop offset="100%" stop-color="#3b82f6"/>
-            <animate attributeName="x1" values="1;0;1" dur="25s" repeatCount="indefinite"/>
-            <animate attributeName="x2" values="0;1;0" dur="25s" repeatCount="indefinite"/>
-          </linearGradient>
-        </defs>
-
-        <g transform="scale(1.3) translate(-80, -120)">
-          <path d="M100,400 L200,150 L500,120 L650,300 L600,500 L350,550 Z" 
-                fill="url(#mainGradient)" fill-opacity="0.95" 
-                style="filter: drop-shadow(0 15px 15px rgba(0,0,0,0.05));"/>
-          <path d="M150,450 L250,180 L480,140 L620,320 L580,520 L360,560 Z" 
-                fill="url(#secondaryGradient)" fill-opacity="0.25"/>
-          <circle cx="180" cy="200" r="6" fill="#60A5FA"/>
-          <circle cx="500" cy="150" r="6" fill="#60A5FA"/>
-          <circle cx="620" cy="300" r="6" fill="#60A5FA"/>
-          <circle cx="400" cy="500" r="6" fill="#2563EB"/>
-          <circle cx="350" cy="400" r="6" fill="#2563EB"/>
-          <line x1="180" y1="200" x2="500" y2="150" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
-          <line x1="500" y1="150" x2="620" y2="300" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="2"/>
-          <line x1="620" y1="300" x2="400" y2="500" stroke="#60A5FA" stroke-opacity="0.3" stroke-width="2"/>
-          <line x1="400" y1="500" x2="350" y2="400" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
-          <line x1="350" y1="400" x2="180" y2="200" stroke="#2563EB" stroke-opacity="0.3" stroke-width="2"/>
-        </g>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<style>
-  .float-smooth {
-    animation: float3D 12s ease-in-out infinite;
-    transform-origin: center center;
-  }
-  @keyframes float3D {
-    0% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
-    25% { transform: rotateX(1deg) rotateY(-1deg) translateY(-8px) translateX(4px); }
-    50% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
-    75% { transform: rotateX(-1deg) rotateY(1deg) translateY(8px) translateX(-4px); }
-    100% { transform: rotateX(0deg) rotateY(0deg) translateY(0px) translateX(0px); }
-  }
-  .perspective-3d { perspective: 1500px; }
-</style>
-
-
-
-<script>
-const hamburgerBtn = document.getElementById('mobile-hamburger');
-const mobileMenu = document.getElementById('mobile-menu-panel');
-const mobileLinks = document.querySelectorAll('.mobile-link');
-const hamburgerIcon = document.getElementById('hamburger-icon');
-const headerBg = document.getElementById('header-bg');
-const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
-const mobileClose = document.getElementById('mobile-close'); // close button inside menu
-
-// === Mobile menu toggle via hamburger ===
-hamburgerBtn.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.contains('translate-x-0');
-  
-  if (!isOpen) {
-    // Open menu
-    mobileMenu.classList.remove('-translate-x-full');
-    mobileMenu.classList.add('translate-x-0');
-    hamburgerIcon.classList.add('hidden');
-
-    // Animate links
-    mobileLinks.forEach((link, i) => {
-      setTimeout(() => {
-        link.classList.remove('opacity-0', 'translate-x-8');
-        link.classList.add('opacity-100', 'translate-x-0');
-      }, i * 120);
-    });
-  } else {
-    // Close menu
-    mobileMenu.classList.add('-translate-x-full');
-    mobileMenu.classList.remove('translate-x-0');
-    hamburgerIcon.classList.remove('hidden');
-    mobileLinks.forEach(link => link.classList.add('opacity-0', 'translate-x-8'));
-  }
-});
-
-// === Mobile menu toggle via X button ===
-mobileClose.addEventListener('click', () => {
-  mobileMenu.classList.add('-translate-x-full');
-  mobileMenu.classList.remove('translate-x-0');
-  hamburgerIcon.classList.remove('hidden');
-  mobileLinks.forEach(link => link.classList.add('opacity-0', 'translate-x-8'));
-});
-
-// === Scroll styling for header ===
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  if (scrollY > 50) {
-    headerBg.classList.add('bg-white', 'shadow-md');
-    headerBg.classList.remove('bg-transparent');
-  } else {
-    headerBg.classList.add('bg-transparent');
-    headerBg.classList.remove('bg-white', 'shadow-md');
-  }
-});
-
-</script>
-
-<style>
-  @keyframes fadeInSmooth { 
-    0% { opacity:0; transform:translateY(30px); } 
-    100% { opacity:1; transform:translateY(0); } 
-  }
-  .animate-fade-in-smooth{ animation:fadeInSmooth 1s cubic-bezier(0.4,0,0.2,1) forwards; }
-
-  @keyframes floatShapes {
-    0% { transform: translateY(0) rotate(0deg) scale(1); }
-    25% { transform: translateY(-10px) rotate(5deg) scale(1.05); }
-    50% { transform: translateY(10px) rotate(-5deg) scale(1); }
-    75% { transform: translateY(-5px) rotate(3deg) scale(1.02); }
-    100% { transform: translateY(0) rotate(0deg) scale(1); }
-  }
-  .animate-float{ animation: floatShapes 6s ease-in-out infinite; }
-</style>
-
-<section id="services" class="py-24 px-6 bg-gray-50">
-  <div class="max-w-7xl mx-auto">
-
-    <div class="text-center max-w-3xl md:max-w-4xl mx-auto mb-16 md:mb-24 px-4">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-snug mb-5 tracking-tight opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll">
-        Our Professional Services
-      </h2>
-      <p class="text-base md:text-lg text-gray-600 leading-relaxed opacity-0 transform -translate-y-4 transition-all duration-1000 ease-out fade-in-on-scroll delay-200">
-        Expertly crafted technology solutions designed to enhance efficiency, drive growth, and elevate your business performance.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-      <!-- Card 1 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="200">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            Software Development
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We develop secure, scalable, and efficient software solutions that streamline workflows and drive long-term business growth.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="300">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-              <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-              <path d="M3 12A9 3 0 0 0 21 12"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            Database Solutions
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We design, optimize, and maintain secure databases built for performance, scalability, and reliable data management.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="400">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="8" height="8" x="3" y="3" rx="2"></rect>
-              <path d="M7 11v4a2 2 0 0 0 2 2h4"></path>
-              <rect width="8" height="8" x="13" y="13" rx="2"></rect>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            Process Digitalization
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We transform manual processes into smart digital workflows that improve accuracy, efficiency, and business agility.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="500">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            Custom Solutions
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We build tailored digital solutions that address specific business challenges and give you a competitive edge.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="600">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="8" x="2" y="2" rx="2"></rect>
-              <rect width="20" height="8" x="2" y="14" rx="2"></rect>
-              <line x1="6" x2="6.01" y1="6" y2="6"></line>
-              <line x1="6" x2="6.01" y1="18" y2="18"></line>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            Servers & Infrastructure
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We design, deploy, and maintain robust server infrastructures to ensure consistent performance and high availability.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="700">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-              <path d="M2 12h20"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            WordPress Development
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We build and manage high-performance WordPress platforms that deliver stability, speed, and seamless user experiences.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 7 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="800">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            Cloud & Hosting
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We deliver secure cloud and hosting solutions built for speed, reliability, and seamless scalability.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 8 -->
-      <div class="group cursor-pointer rounded-2xl bg-gray-100 border border-gray-200 shadow-md transition-transform duration-500 ease-in-out hover:scale-105 hover:shadow-xl opacity-0 transform translate-y-6 fade-in-on-scroll" data-delay="900">
-        <div class="flex flex-col items-center p-6 text-center space-y-3">
-          <div class="flex items-center justify-center w-16 h-16 p-3 rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-all duration-700 ease-in-out transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-blue-600 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 transition-transform duration-500 group-hover:-translate-y-1">
-            IT Consulting
-          </h3>
-        </div>
-        <div class="p-6 pt-0 text-center">
-          <p class="text-sm sm:text-base text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-gray-700">
-            We provide expert IT consulting to help you align technology with strategy and make informed, future-ready decisions.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="py-24 px-6 bg-secondary/30">
-  <div class="max-w-7xl mx-auto">
-    <!-- Section Title -->
-   <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-snug tracking-tight text-center mb-16 opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll" data-delay="0">
-  Our Success Stories
-</h2>
-
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-      <!-- Card 1 -->
-      <div class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full flex flex-col fade-in-on-scroll opacity-0 translate-y-6" data-delay="100">
-        <div class="flex flex-col space-y-2.5 p-6 flex-grow">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-3 bg-blue-50 rounded-lg group-hover:bg-blue-100 transition">
-              <i data-lucide="shopping-cart" class="w-6 h-6 text-blue-500"></i>
-            </div>
-            <span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full font-medium">
-              E-Commerce
-            </span>
-          </div>
-          <h3 class="font-semibold text-xl md:text-xl text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-            Global Online Retail Platform
-          </h3>
-        </div>
-        <div class="p-6 pt-0">
-          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-            Developed a high-performance e-commerce platform serving over 50,000 daily users, with multi-currency checkout, automated order processing, and advanced analytics dashboards.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full flex flex-col fade-in-on-scroll opacity-0 translate-y-6" data-delay="200">
-        <div class="flex flex-col space-y-2.5 p-6 flex-grow">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-3 bg-green-50 rounded-lg group-hover:bg-green-100 transition">
-              <i data-lucide="server" class="w-6 h-6 text-green-500"></i>
-            </div>
-            <span class="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-full font-medium">
-              Enterprise SaaS
-            </span>
-          </div>
-          <h3 class="font-semibold text-xl md:text-xl text-gray-900 group-hover:text-green-600 transition-colors duration-300">
-            Multi-Tenant SaaS Management System
-          </h3>
-        </div>
-        <div class="p-6 pt-0">
-          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-            Built a secure SaaS platform supporting thousands of clients, featuring role-based access, real-time analytics, and automated billing.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full flex flex-col fade-in-on-scroll opacity-0 translate-y-6" data-delay="300">
-        <div class="flex flex-col space-y-2.5 p-6 flex-grow">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-3 bg-purple-50 rounded-lg group-hover:bg-purple-100 transition">
-              <i data-lucide="activity" class="w-6 h-6 text-purple-500"></i>
-            </div>
-            <span class="text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded-full font-medium">
-              FinTech
-            </span>
-          </div>
-          <h3 class="font-semibold text-xl md:text-xl text-gray-900 group-hover:text-purple-600 transition-colors duration-300">
-            Real-Time Payment & Fraud Detection
-          </h3>
-        </div>
-        <div class="p-6 pt-0">
-          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-            Created a real-time payment system with AI-powered fraud detection, handling high-volume transactions securely and fully compliant with industry standards.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full flex flex-col fade-in-on-scroll opacity-0 translate-y-6" data-delay="400">
-        <div class="flex flex-col space-y-2.5 p-6">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-3 bg-yellow-50 rounded-lg group-hover:bg-yellow-100 transition">
-              <i data-lucide="globe" class="w-6 h-6 text-yellow-500"></i>
-            </div>
-            <span class="text-xs bg-yellow-50 text-yellow-700 px-2 py-1 rounded-full font-medium">
-              Healthcare
-            </span>
-          </div>
-          <h3 class="font-semibold text-xl md:text-xl text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">
-            Patient Management & Scheduling
-          </h3>
-        </div>
-        <div class="p-6 pt-0">
-          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-            Developed a secure patient management system with appointment scheduling, medical record tracking, staff dashboards, and reporting tools.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full flex flex-col fade-in-on-scroll opacity-0 translate-y-6" data-delay="500">
-        <div class="flex flex-col space-y-2.5 p-6">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-3 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition">
-              <i data-lucide="bar-chart" class="w-6 h-6 text-indigo-500"></i>
-            </div>
-            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full font-medium">
-              Analytics
-            </span>
-          </div>
-          <h3 class="font-semibold text-xl md:text-xl text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
-            Business Intelligence Dashboard
-          </h3>
-        </div>
-        <div class="p-6 pt-0">
-          <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-            Created a BI dashboard visualizing KPIs, sales trends, and automated reports, enabling data-driven decisions for enterprise clients.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="cursor-pointer rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 group h-full flex flex-col fade-in-on-scroll opacity-0 translate-y-6" data-delay="600">
-        <div class="flex flex-col space-y-2.5 p-6 flex-grow">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-3 bg-emerald-50 rounded-lg group-hover:bg-emerald-100 transition">
-              <i data-lucide="server" class="w-6 h-6 text-emerald-500"></i>
-            </div>
-            <span class="text-xs bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">
-              Logistics & Automation
-            </span>
-          </div>
-         <h3 class="font-semibold text-xl md:text-xl text-gray-900 group-hover:text-emerald-600 transition-colors duration-300">
-          Advanced Logistics & Automation Platform
-        </h3>
-        <p class="text-sm md:text-base text-gray-600 leading-relaxed">
-          Developed an intelligent automation platform that streamlines corporate logistics operations, increasing efficiency and reducing operational costs significantly.
-        </p>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- Include AOS CSS in <head> -->
-  <div id="contact"></div>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-<section class="py-20 px-6 overflow-hidden bg-gray-50">
-  <div class="max-w-7xl mx-auto">
-    <!-- Heading -->
-    <div class="text-center mb-16 opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-        Ready to Take the Next Step?
-      </h2>
-      <pclass="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-        Let’s discuss how we can help transform your business with the right technology solutions.
-      </pclass=>
-    </div>
-
-    <!-- Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-      <!-- Contact Info -->
-      <div class="space-y-6">
-        <!-- Email -->
-        <div class="rounded-lg border bg-white shadow-sm p-6 cursor-pointer opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll hover:shadow-lg hover:-translate-y-1" data-delay="100">
-          <h3 class="text-2xl font-semibold flex items-center gap-3 mb-2 text-gray-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-            </svg>
-            Email Us
-          </h3>
-          <p class="text-sm">
-            <a href="mailto:ardiankrasniqi171@gmail.com" class="text-blue-500 hover:underline">
-              ardiankrasniqi171@gmail.com
-            </a>
-          </p>
-        </div>
-
-        <!-- Call -->
-        <div class="rounded-lg border bg-white shadow-sm p-6 cursor-pointer opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll hover:shadow-lg hover:-translate-y-1" data-delay="200">
-          <h3 class="text-2xl font-semibold flex items-center gap-3 mb-2 text-gray-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            Call Us
-          </h3>
-          <p class="text-sm">
-            <a href="tel:+1234567890" class="text-blue-500 hover:underline">
-              +1 (234) 567-8900
-            </a>
-          </p>
-        </div>
-
-        <!-- Visit -->
-        <div class="rounded-lg border bg-white shadow-sm p-6 cursor-pointer opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll hover:shadow-lg hover:-translate-y-1" data-delay="300">
-          <h3 class="text-2xl font-semibold flex items-center gap-3 mb-2 text-gray-900">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-              <circle cx="12" cy="10" r="3"></circle>
-            </svg>
-            Visit Us
-          </h3>
-          <p class="text-sm text-gray-700">
-            123 Technology Avenue<br />
-            Innovation District<br />
-            Tech City, TC 12345
-          </p>
-        </div>
-      </div>
-
-      <!-- Form -->
-      <div class="lg:col-span-2 opacity-0 transform -translate-y-6 transition-all duration-1000 ease-out fade-in-on-scroll" data-delay="400">
-        <div class="rounded-lg border bg-white shadow-sm">
-          <div class="p-6">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-1">Schedule a Consultation</h3>
-            <p class="text-sm text-gray-600 mb-6">
-              Fill out the form below and we'll get back to you within 24 hours
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-20 md:pt-52 md:pb-32 px-6 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 data-i18n="hero_headline" class="text-5xl md:text-7xl font-bold tracking-tighter mb-6 opacity-0 animate-fade-in-up leading-[1.1]">
+                Stop breaking. <br class="hidden md:block"/> Start scaling.
+            </h1>
+            <p data-i18n="hero_subheadline" class="text-lg md:text-xl text-muted mb-10 max-w-2xl mx-auto opacity-0 animate-fade-in-up delay-100">
+                We help startups and growing businesses build, fix, and scale their systems — fast and properly.
             </p>
-
-            <form class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="space-y-2">
-                  <label for="name" class="text-sm font-medium">Name *</label>
-                  <input id="name" type="text" placeholder="Your full name"
-                    class="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
-                </div>
-                <div class="space-y-2">
-                  <label for="company" class="text-sm font-medium">Company</label>
-                  <input id="company" type="text" placeholder="Your company name"
-                    class="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <label for="email" class="text-sm font-medium">Email *</label>
-                <input id="email" type="email" placeholder="your.email@company.com"
-                  class="flex h-11 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
-              </div>
-
-              <div class="space-y-2">
-                <label for="message" class="text-sm font-medium">Message *</label>
-                <textarea id="message" rows="5" placeholder="Tell us about your project and requirements..."
-                  class="flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base placeholder:text-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition resize-none"></textarea>
-              </div>
-
-              <button type="submit"
-                class="inline-flex items-center justify-center gap-2 text-sm font-medium text-white rounded-md h-11 w-full px-8 bg-gradient-to-r from-blue-600 to-blue-500 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send w-4 h-4 mr-2"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
-                Schedule a Consultation
-              </button>
-            </form>
-          </div>
+            <div class="opacity-0 animate-fade-in-up delay-200">
+                <a href="#contact" data-i18n="hero_cta" class="inline-flex items-center justify-center bg-white text-black font-semibold px-8 py-4 rounded-full hover:bg-gray-200 transition-transform hover:scale-105 active:scale-95">
+                    Book a Call
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<footer class="bg-white text-gray-700 border-t border-gray-200 pt-12 pb-12">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
+    </section>
 
-    <!-- Logo & Description -->
-    <div class="space-y-2">
-          <a href="#" class="flex p0 m0 items-center gap-0">
-      <img src="https://raw.githubusercontent.com/Ardianiii/elevate-oct.github.io/refs/heads/main/assets/images/tech.png" 
-           alt="Elevatech Logo" 
-           class="h-12 md:h-14 w-auto">
-    </a>
-      <p class="text-gray-600 text-sm md:text-base">
-        Professional Tech Services for Modern Businesses
-      </p>
-      <p class="text-gray-600 text-sm md:text-base">
-        Empowering businesses with reliable, scalable, and innovative technology solutions.
-      </p>
-    </div>
+    <!-- Services Section -->
+    <section class="py-24 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <h2 data-i18n="services_title" class="text-xs font-bold uppercase tracking-widest text-muted mb-12 text-center md:text-left">What We Do</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Build -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-gray-600 transition-colors group cursor-default">
+                    <div class="w-10 h-10 mb-6 rounded-lg bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_1_title" class="text-xl font-semibold mb-3">Build</h3>
+                    <p data-i18n="service_1_desc" class="text-muted text-sm leading-relaxed">
+                        SaaS, platforms, web apps.
+                    </p>
+                </div>
+                <!-- Fix -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-gray-600 transition-colors group cursor-default">
+                    <div class="w-10 h-10 mb-6 rounded-lg bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_2_title" class="text-xl font-semibold mb-3">Fix</h3>
+                    <p data-i18n="service_2_desc" class="text-muted text-sm leading-relaxed">
+                        Bugs, crashes, broken systems.
+                    </p>
+                </div>
+                <!-- Scale -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-gray-600 transition-colors group cursor-default">
+                    <div class="w-10 h-10 mb-6 rounded-lg bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 data-i18n="service_3_title" class="text-xl font-semibold mb-3">Scale</h3>
+                    <p data-i18n="service_3_desc" class="text-muted text-sm leading-relaxed">
+                        Optimization, infrastructure, integrations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Services -->
-    <div>
-      <h2 class="font-semibold text-lg text-black md:mb-4 mb-2 cursor-pointer md:cursor-default"
-          onclick="toggleAccordion('servicesAccordion')">
-        Services
-      </h2>
-      <ul id="servicesAccordion" class="space-y-2 text-gray-600 text-sm md:text-base md:block hidden transition-all duration-300 overflow-hidden">
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Software Development</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Database Solutions</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Process Digitalization</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Custom Solutions</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Infrastructure</li>
-      </ul>
-    </div>
+    <!-- How We Work -->
+    <section class="py-24 px-6 relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 data-i18n="how_we_work_title" class="text-xs font-bold uppercase tracking-widest text-muted mb-12 text-center md:text-left">How We Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 data-i18n="how_1_title" class="text-lg font-medium mb-2 text-white">Understand fast</h4>
+                    <p data-i18n="how_1_desc" class="text-muted text-sm">Quick analysis.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="how_2_title" class="text-lg font-medium mb-2 text-white">Execute immediately</h4>
+                    <p data-i18n="how_2_desc" class="text-muted text-sm">No delays.</p>
+                </div>
+                <div>
+                    <h4 data-i18n="how_3_title" class="text-lg font-medium mb-2 text-white">Deliver & improve</h4>
+                    <p data-i18n="how_3_desc" class="text-muted text-sm">Ship and refine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Company -->
-    <div>
-      <h2 class="font-semibold text-lg text-black md:mb-4 mb-2 cursor-pointer md:cursor-default"
-          onclick="toggleAccordion('companyAccordion')">
-        Company
-      </h2>
-      <ul id="companyAccordion" class="space-y-2 text-gray-600 text-sm md:text-base md:block hidden transition-all duration-300 overflow-hidden">
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">About Us</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Portfolio</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Contact</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Blog</li>
-        <li class="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Careers</li>
-      </ul>
-    </div>
+    <!-- Use Cases -->
+    <section class="py-24 px-6 relative z-10 bg-white/[0.02]">
+        <div class="max-w-6xl mx-auto">
+            <h2 data-i18n="use_cases_title" class="text-xs font-bold uppercase tracking-widest text-muted mb-12 text-center md:text-left">Use Cases</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-panel p-6 rounded-xl flex items-center space-x-4">
+                    <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                    <span data-i18n="use_case_1" class="text-sm font-medium">Need MVP quickly</span>
+                </div>
+                <div class="glass-panel p-6 rounded-xl flex items-center space-x-4">
+                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                    <span data-i18n="use_case_2" class="text-sm font-medium">Site crashing under traffic</span>
+                </div>
+                <div class="glass-panel p-6 rounded-xl flex items-center space-x-4">
+                    <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+                    <span data-i18n="use_case_3" class="text-sm font-medium">Broken backend from previous dev</span>
+                </div>
+                <div class="glass-panel p-6 rounded-xl flex items-center space-x-4">
+                    <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                    <span data-i18n="use_case_4" class="text-sm font-medium">Need fast integrations</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Contact -->
-    <div class="space-y-2">
-      <h2 class="font-semibold text-lg text-black mb-2">Contact</h2>
-      <p class="flex items-center text-gray-600 text-sm md:text-base">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 8V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2z" />
-        </svg>
-        contact@elevatech.com
-      </p>
-      <p class="text-gray-600 text-sm md:text-base">
-        123 Technology Avenue<br>
-        Innovation District<br>
-        Tech City, TC 12345
-      </p>
-    </div>
+    <!-- Engagement Models -->
+    <section class="py-24 px-6 relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <h2 data-i18n="engagement_title" class="text-xs font-bold uppercase tracking-widest text-muted mb-12 text-center md:text-left">How You Can Work With Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-white/10 p-8 rounded-2xl hover:border-white/20 transition-colors">
+                    <h3 data-i18n="eng_1_title" class="text-xl font-semibold mb-2">Project-based</h3>
+                    <p data-i18n="eng_1_desc" class="text-muted text-sm">Clear scope, timeline, and deliverables.</p>
+                </div>
+                <div class="border border-white/10 p-8 rounded-2xl bg-white/5 hover:border-white/20 transition-colors">
+                    <h3 data-i18n="eng_2_title" class="text-xl font-semibold mb-2">Fast Fix / Emergency</h3>
+                    <p data-i18n="eng_2_desc" class="text-muted text-sm">Immediate intervention for critical issues.</p>
+                </div>
+                <div class="border border-white/10 p-8 rounded-2xl hover:border-white/20 transition-colors">
+                    <h3 data-i18n="eng_3_title" class="text-xl font-semibold mb-2">Ongoing Support</h3>
+                    <p data-i18n="eng_3_desc" class="text-muted text-sm">Dedicated engineering bandwidth every month.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>
+    <!-- Who We Are -->
+    <section class="py-24 px-6 relative z-10">
+        <div class="max-w-3xl mx-auto glass-panel p-10 md:p-16 rounded-3xl text-center border border-white/10 hover:border-white/20 transition-colors">
+            <h2 data-i18n="who_we_are_title" class="text-xs font-bold uppercase tracking-widest text-muted mb-8">Who We Are</h2>
+            <p data-i18n="who_we_are_desc" class="text-xl md:text-2xl font-medium tracking-tight mb-10 max-w-xl mx-auto leading-relaxed">
+                A team of experienced engineers focused on building, fixing, and scaling real-world systems.
+            </p>
+            
+            <div class="space-y-2 mb-8">
+                <p class="text-white font-semibold">Ardian Krasniqi</p>
+                <p data-i18n="founder_role" class="text-muted text-sm">Founder & Lead Engineer</p>
+            </div>
 
-  <!-- Footer Bottom -->
-  <div class="mt-10 border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center px-6 lg:px-10">
-    <p class="text-gray-500 text-sm md:text-base">&copy; 2025 Elevatech. All rights reserved.</p>
+            <p data-i18n="who_we_are_collab" class="text-xs text-muted/70 italic">
+                We collaborate with trusted specialists when needed.
+            </p>
+        </div>
+    </section>
 
-    <!-- Social Icons -->
-    <div class="flex space-x-3 mt-4 md:mt-0">
-      <a href="#" class="text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#" class="text-gray-500 hover:text-blue-400 hover:bg-blue-50 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#" class="text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a href="#" class="text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full w-9 h-9 flex items-center justify-center transition-all duration-300">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-  </div>
-</footer>
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Left: Info -->
+                <div>
+                    <h2 data-i18n="contact_headline" class="text-4xl md:text-5xl font-bold tracking-tighter mb-6">
+                        Got a broken system or an idea to build?
+                    </h2>
+                    <p data-i18n="contact_sub" class="text-lg text-muted mb-12">
+                        Let's get it done. Reach out directly and we'll get back to you within 24 hours.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 text-muted hover:text-white transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <a href="tel:+38345959131" class="text-lg font-medium">+383 45 959 131</a>
+                        </div>
+                        <div class="flex items-center space-x-4 text-muted hover:text-white transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <a href="mailto:ardiankrasniqi171@gmail.com" class="text-lg font-medium">ardiankrasniqi171@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
 
-<script>
-  function toggleAccordion(id) {
-    const el = document.getElementById(id);
-    if (el.style.maxHeight) {
-      el.style.maxHeight = null;
-      setTimeout(() => el.classList.add('hidden'), 300);
-    } else {
-      el.classList.remove('hidden');
-      el.style.maxHeight = el.scrollHeight + "px";
-    }
-  }
+                <!-- Right: Form -->
+                <div class="glass-panel p-8 md:p-10 rounded-3xl relative">
+                    <form id="contact-form" class="space-y-6">
+                        <!-- Required Web3Forms config -->
+                        <input type="hidden" name="access_key" value="b190fee5-a383-4c88-ab5f-7409ec5f91ee">
+                        <input type="hidden" name="subject" value="New Project Inquiry from ElevateTech">
+                        <input type="checkbox" name="botcheck" id="" style="display: none;">
 
-  // On page load, reset mobile accordions
-  window.addEventListener('resize', () => {
-    if(window.innerWidth >= 768) {
-      document.getElementById('servicesAccordion').classList.remove('hidden');
-      document.getElementById('companyAccordion').classList.remove('hidden');
-      document.getElementById('servicesAccordion').style.maxHeight = null;
-      document.getElementById('companyAccordion').style.maxHeight = null;
-    } else {
-      document.getElementById('servicesAccordion').classList.add('hidden');
-      document.getElementById('companyAccordion').classList.add('hidden');
-    }
-  });
-</script>
+                        <div class="space-y-2">
+                            <label data-i18n="form_name" for="name" class="text-sm font-medium text-muted">Full Name *</label>
+                            <input type="text" id="name" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-white/10 transition-colors placeholder-white/20" placeholder="John Doe">
+                        </div>
 
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label data-i18n="form_email" for="email" class="text-sm font-medium text-muted">Email *</label>
+                                <input type="email" id="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-white/10 transition-colors placeholder-white/20" placeholder="john@example.com">
+                            </div>
+                            <div class="space-y-2">
+                                <label data-i18n="form_company" for="company" class="text-sm font-medium text-muted">Company (Optional)</label>
+                                <input type="text" id="company" name="company" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-white/10 transition-colors placeholder-white/20" placeholder="Your Company">
+                            </div>
+                        </div>
 
-<!-- Include AOS JS at the bottom -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-  lucide.createIcons();
-</script>
+                        <div class="space-y-2">
+                            <label data-i18n="form_message" for="message" class="text-sm font-medium text-muted">Message *</label>
+                            <textarea id="message" name="message" required rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/30 focus:bg-white/10 transition-colors placeholder-white/20 resize-none" placeholder="Tell us about your system or project..."></textarea>
+                        </div>
 
-<script>
-  AOS.init();
-</script>
+                        <button type="submit" data-i18n="form_btn" class="w-full bg-white text-black font-semibold px-8 py-4 rounded-xl hover:bg-gray-200 transition-transform active:scale-95 text-base flex justify-center items-center">
+                            Send Message
+                        </button>
+                        
+                        <!-- Success message container -->
+                        <div id="form-result" class="hidden text-center text-sm font-medium text-emerald-400 mt-4" data-i18n="form_success">
+                            Message sent successfully. We will contact you soon.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/5 text-center text-xs text-muted">
+        <p>&copy; 2026 ElevateTech. Execution over everything.</p>
+    </footer>
 
+    <script>
+        // Translations
+        const translations = {
+            en: {
+                nav_cta: "Book a Call",
+                hero_headline: "Stop breaking. <br class='hidden md:block'/> Start scaling.",
+                hero_subheadline: "We help startups and growing businesses build, fix, and scale their systems — fast and properly.",
+                hero_cta: "Book a Call",
+                services_title: "What We Do",
+                service_1_title: "Build",
+                service_1_desc: "SaaS, platforms, web apps.",
+                service_2_title: "Fix",
+                service_2_desc: "Bugs, crashes, broken systems.",
+                service_3_title: "Scale",
+                service_3_desc: "Optimization, infrastructure, integrations.",
+                how_we_work_title: "How We Work",
+                how_1_title: "Understand fast",
+                how_1_desc: "Quick analysis.",
+                how_2_title: "Execute immediately",
+                how_2_desc: "No delays.",
+                how_3_title: "Deliver & improve",
+                how_3_desc: "Ship and refine.",
+                use_cases_title: "Use Cases",
+                use_case_1: "Need MVP quickly",
+                use_case_2: "Site crashing under traffic",
+                use_case_3: "Broken backend from previous dev",
+                use_case_4: "Need fast integrations",
+                engagement_title: "How You Can Work With Us",
+                eng_1_title: "Project-based",
+                eng_1_desc: "Clear scope, timeline, and deliverables.",
+                eng_2_title: "Fast Fix / Emergency",
+                eng_2_desc: "Immediate intervention for critical issues.",
+                eng_3_title: "Ongoing Support",
+                eng_3_desc: "Dedicated engineering bandwidth every month.",
+                who_we_are_title: "Who We Are",
+                who_we_are_desc: "A team of experienced engineers focused on building, fixing, and scaling real-world systems.",
+                founder_role: "Founder & Lead Engineer",
+                who_we_are_collab: "We collaborate with trusted specialists when needed.",
+                contact_headline: "Got a broken system or an idea to build?",
+                contact_sub: "Let's get it done. Reach out directly and we'll get back to you within 24 hours.",
+                form_name: "Full Name *",
+                form_email: "Email *",
+                form_company: "Company (Optional)",
+                form_message: "Message *",
+                form_btn: "Send Message",
+                form_success: "Message sent successfully. We will contact you soon."
+            },
+            al: {
+                nav_cta: "Rezervo",
+                hero_headline: "Ndaloni problemet. <br class='hidden md:block'/> Filloni rritjen.",
+                hero_subheadline: "Ndihmojmë startup-et dhe bizneset të ndërtojnë, rregullojnë dhe shkallëzojnë sistemet e tyre — shpejt dhe saktë.",
+                hero_cta: "Rezervo një Takim",
+                services_title: "Çfarë Bëjmë",
+                service_1_title: "Ndërto",
+                service_1_desc: "SaaS, platforma, aplikacione web.",
+                service_2_title: "Rregullo",
+                service_2_desc: "Bugs, rënie, sisteme të prishura.",
+                service_3_title: "Shkallëzo",
+                service_3_desc: "Optimizim, infrastrukturë, integrime.",
+                how_we_work_title: "Si Punojmë",
+                how_1_title: "Kuptojmë shpejt",
+                how_1_desc: "Analizë e shpejtë.",
+                how_2_title: "Ekzekutojmë menjëherë",
+                how_2_desc: "Pa vonesa.",
+                how_3_title: "Dorëzojmë & përmirësojmë",
+                how_3_desc: "Dërgojmë dhe rafinojmë.",
+                use_cases_title: "Raste Përdorimi",
+                use_case_1: "Duhet MVP shpejt",
+                use_case_2: "Faqja bie nga trafiku",
+                use_case_3: "Backend i prishur nga dev i mëparshëm",
+                use_case_4: "Nevojë për integrime të shpejta",
+                engagement_title: "Si Mund Të Punojmë Bashkë",
+                eng_1_title: "Me Projekt",
+                eng_1_desc: "Qëllim, afate dhe dorëzime të qarta.",
+                eng_2_title: "Rregullim i Shpejtë / Emergjencë",
+                eng_2_desc: "Ndërhyrje e menjëhershme për probleme kritike.",
+                eng_3_title: "Suport i Vazhdueshëm",
+                eng_3_desc: "Kapacitet i dedikuar inxhinierik çdo muaj.",
+                who_we_are_title: "Kush Jemi",
+                who_we_are_desc: "Një ekip inxhinierësh me përvojë, të fokusuar në ndërtimin, rregullimin dhe shkallëzimin e sistemeve reale.",
+                founder_role: "Themelues & Inxhinier Kryesor",
+                who_we_are_collab: "Bashkëpunojmë me specialistë të besuar kur është e nevojshme.",
+                contact_headline: "Keni një sistem të prishur apo ide për të ndërtuar?",
+                contact_sub: "Le ta realizojmë. Na kontaktoni direkt dhe do t'ju kthejmë përgjigje brenda 24 orëve.",
+                form_name: "Emri i Plotë *",
+                form_email: "Email *",
+                form_company: "Kompania (Opsionale)",
+                form_message: "Mesazhi *",
+                form_btn: "Dërgo Mesazhin",
+                form_success: "Mesazhi u dërgua me sukses. Do t'ju kontaktojmë së shpejti."
+            },
+            de: {
+                nav_cta: "Termin buchen",
+                hero_headline: "Schluss mit Ausfällen. <br class='hidden md:block'/> Zeit für Wachstum.",
+                hero_subheadline: "Wir helfen Startups und wachsenden Unternehmen, ihre Systeme zu entwickeln, zu reparieren und zu skalieren — schnell und professionell.",
+                hero_cta: "Termin buchen",
+                services_title: "Was Wir Tun",
+                service_1_title: "Entwickeln",
+                service_1_desc: "SaaS, Plattformen, Web-Apps.",
+                service_2_title: "Reparieren",
+                service_2_desc: "Bugs, Abstürze, defekte Systeme.",
+                service_3_title: "Skalieren",
+                service_3_desc: "Optimierung, Infrastruktur, Integrationen.",
+                how_we_work_title: "Wie Wir Arbeiten",
+                how_1_title: "Schnell verstehen",
+                how_1_desc: "Schnelle Analyse.",
+                how_2_title: "Sofort umsetzen",
+                how_2_desc: "Keine Verzögerungen.",
+                how_3_title: "Liefern & verbessern",
+                how_3_desc: "Schnell ausliefern und verfeinern.",
+                use_cases_title: "Anwendungsfälle",
+                use_case_1: "MVP schnell benötigt",
+                use_case_2: "Website stürzt bei Traffic ab",
+                use_case_3: "Defektes Backend von vorherigem Dev",
+                use_case_4: "Schnelle Integrationen nötig",
+                engagement_title: "Wie Wir Zusammenarbeiten",
+                eng_1_title: "Projektbasiert",
+                eng_1_desc: "Klarer Umfang, Zeitplan und Ergebnisse.",
+                eng_2_title: "Schnelle Reparatur / Notfall",
+                eng_2_desc: "Sofortiges Eingreifen bei kritischen Problemen.",
+                eng_3_title: "Laufender Support",
+                eng_3_desc: "Dedizierte Entwicklerkapazität jeden Monat.",
+                who_we_are_title: "Wer Wir Sind",
+                who_we_are_desc: "Ein Team erfahrener Ingenieure, fokussiert auf Entwicklung, Reparatur und Skalierung realer Systeme.",
+                founder_role: "Gründer & Leitender Ingenieur",
+                who_we_are_collab: "Bei Bedarf arbeiten wir mit vertrauenswürdigen Spezialisten zusammen.",
+                contact_headline: "Defektes System oder eine Idee zur Umsetzung?",
+                contact_sub: "Lassen Sie es uns anpacken. Melden Sie sich direkt bei uns und wir antworten innerhalb von 24 Stunden.",
+                form_name: "Vollständiger Name *",
+                form_email: "E-Mail *",
+                form_company: "Unternehmen (Optional)",
+                form_message: "Nachricht *",
+                form_btn: "Nachricht Senden",
+                form_success: "Nachricht erfolgreich gesendet. Wir werden Sie in Kürze kontaktieren."
+            }
+        };
 
+        function setLang(lang) {
+            // Update active state on buttons
+            ['en', 'al', 'de'].forEach(l => {
+                const btn = document.getElementById(`lang-${l}`);
+                if (l === lang) {
+                    btn.classList.add('text-white');
+                    btn.classList.remove('text-muted');
+                } else {
+                    btn.classList.remove('text-white');
+                    btn.classList.add('text-muted');
+                }
+            });
 
-  <script src="assets/js/main.js"></script>
+            // Update content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        // Form Submission Handler via Web3Forms
+        const form = document.getElementById('contact-form');
+        const result = document.getElementById('form-result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            
+            // Validate key
+            if(object.access_key === "YOUR_WEB3FORMS_ACCESS_KEY") {
+                alert("Developer Note: Please replace YOUR_WEB3FORMS_ACCESS_KEY in the HTML with your actual Web3Forms access key before this form will work.");
+                return;
+            }
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Get loading text based on current language
+            const activeLangBtn = document.querySelector('.text-white[id^="lang-"]');
+            const currentLang = activeLangBtn ? activeLangBtn.id.replace('lang-', '') : 'en';
+            const loadingText = currentLang === 'al' ? 'Duke dërguar...' : (currentLang === 'de' ? 'Senden...' : 'Sending...');
+            
+            submitBtn.innerHTML = loadingText;
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-70');
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.classList.remove('hidden');
+                    form.reset();
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message || "Error sending message.";
+                    result.classList.remove('hidden');
+                    result.classList.remove('text-emerald-400');
+                    result.classList.add('text-red-400');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = "Something went wrong!";
+                result.classList.remove('hidden');
+                result.classList.remove('text-emerald-400');
+                result.classList.add('text-red-400');
+            })
+            .then(function() {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-70');
+                setTimeout(() => {
+                    result.classList.add('hidden');
+                }, 5000);
+            });
+        });
+
+        // Init scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('border-b', 'border-white/10');
+            } else {
+                nav.classList.remove('border-b', 'border-white/10');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach(el => {
+            if(!el.classList.contains('absolute') && !el.closest('.animate-fade-in-up')) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            }
+        });
+    </script>
 </body>
 </html>
